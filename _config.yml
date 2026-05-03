@@ -16,7 +16,7 @@ twitter_username:
 github_username: rational-kunal
 
 # Analytics
-google_analytics: "" # Add your GA tracking ID here (e.g. G-XXXXXXX)
+google_analytics: "G-244HDKPD5S" # Add your GA tracking ID here (e.g. G-XXXXXXX)
 
 # Build settings
 # theme: minima # Removed default theme

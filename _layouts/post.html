@@ -1,0 +1,35 @@
+---
+layout: default
+---
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title | escape }}</h1>
+    <p class="post-meta">
+      <i class="ph-bold ph-calendar-blank"></i>
+      <time datetime="{{ page.date | date_to_xmlschema }}">
+        {{ page.date | date: "%b %-d, %Y" }}
+      </time>
+    </p>
+    {% if page.series %}
+      <div class="series-info">
+        <strong><i class="ph-bold ph-bookmarks"></i> Series: {{ page.series }}</strong>
+        <ul>
+          {% assign series_posts = site.posts | where: "series", page.series | sort: 'date' %}
+          {% for sp in series_posts %}
+            <li>
+              {% if sp.url == page.url %}
+                <em>{{ sp.title }} (This post)</em>
+              {% else %}
+                <a href="{{ sp.url | relative_url }}">{{ sp.title }}</a>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </header>
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+</article>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Outfit:wght@400;700;900&family=Fira+Code&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    
+    <!-- Theme Initialization -->
+    <script>
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+    
+    {% if site.google_analytics and site.google_analytics != "" %}
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ site.google_analytics }}');
+    </script>
+    {% endif %}
+</head>
+<body>
+    <header class="site-header">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+            <i class="ph-bold ph-sun" id="theme-icon"></i>
+        </button>
+        <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+        <p>{{ site.description }}</p>
+    </header>
+
+    <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+            {{ content }}
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="social-links">
+            <a href="https://github.com/rational-kunal" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="ph-bold ph-github-logo"></i></a>
+            <a href="https://www.linkedin.com/in/kunal-kamble-671b3a118/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="ph-bold ph-linkedin-logo"></i></a>
+            <a href="mailto:kunalgk1999@gmail.com" aria-label="Email"><i class="ph-bold ph-envelope-simple"></i></a>
+        </div>
+        <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
+    </footer>
+
+    <!-- Theme Toggle Logic -->
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        
+        function updateIcon(theme) {
+            if (theme === 'light') {
+                themeIcon.classList.remove('ph-sun');
+                themeIcon.classList.add('ph-moon');
+            } else {
+                themeIcon.classList.remove('ph-moon');
+                themeIcon.classList.add('ph-sun');
+            }
+        }
+        
+        // Initial icon state
+        updateIcon(document.documentElement.getAttribute('data-theme'));
+        
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
+        });
+    </script>
+</body>
+</html>

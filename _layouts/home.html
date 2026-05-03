@@ -1,0 +1,23 @@
+---
+layout: default
+---
+
+<div class="home">
+  <h2><i class="ph-bold ph-notebook"></i> All Writings</h2>
+
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li class="post-card">
+        <span class="post-meta"><i class="ph-bold ph-calendar-blank"></i> {{ post.date | date: "%b %-d, %Y" }}</span>
+        <h3>
+          <a class="post-link" href="{{ post.url | relative_url }}">
+            {{ post.title | escape }}
+          </a>
+        </h3>
+        {% if post.series %}
+          <span class="series-tag"><i class="ph-bold ph-bookmarks"></i> Series: {{ post.series }}</span>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>

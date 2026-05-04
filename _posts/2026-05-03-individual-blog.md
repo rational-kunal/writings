@@ -3,6 +3,8 @@ layout: post
 title: "The Joy of Monospace"
 date: 2026-05-03 10:00:00 +0000
 categories: design
+hero_image: /assets/images/cherry_blossom_hero.png
+hero_caption: "Flowers, trees and bushes reach their peak of full bloom"
 ---
 
 Welcome to my new blog, **Rational Writings**!

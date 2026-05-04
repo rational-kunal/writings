@@ -4,6 +4,8 @@ title: "Learning the Terminal: Part 2"
 date: 2026-05-02 10:00:00 +0000
 categories: tutorial
 series: "Learning the Terminal"
+hero_image: /assets/images/terminal-demo.png
+hero_caption: "Retro Terminal Boot Sequence"
 ---
 
 Welcome back! In Part 1, we learned about basic commands. Now let's talk about the aesthetic of the terminal.

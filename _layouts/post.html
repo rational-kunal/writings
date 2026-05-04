@@ -3,13 +3,37 @@ layout: default
 ---
 <article class="post">
   <header class="post-header">
-    <h1 class="post-title">{{ page.title | escape }}</h1>
+    {% if page.hero_image %}
+    <div class="post-hero">
+      <img src="{{ page.hero_image | relative_url }}" alt="{{ page.title | escape }}">
+      <div class="post-hero-caption">
+        <h1 class="hero-title">{{ page.title | default: 'Placeholder Title' }}</h1>
+        <div class="hero-meta">
+          <i class="ph-bold ph-calendar-blank"></i>
+          {% if page.date %}
+            {{ page.date | date: "%b %-d, %Y" }}
+          {% else %}
+            Placeholder Date
+          {% endif %}
+        </div>
+        {% if page.hero_caption %}
+        <p class="hero-description">{{ page.hero_caption }}</p>
+        {% endif %}
+      </div>
+    </div>
+    {% else %}
+    <h1 class="post-title">{{ page.title | default: 'Placeholder Title' | escape }}</h1>
     <p class="post-meta">
       <i class="ph-bold ph-calendar-blank"></i>
+      {% if page.date %}
       <time datetime="{{ page.date | date_to_xmlschema }}">
         {{ page.date | date: "%b %-d, %Y" }}
       </time>
+      {% else %}
+      <span>Placeholder Date</span>
+      {% endif %}
     </p>
+    {% endif %}
     {% if page.series %}
       <div class="series-info">
         <strong><i class="ph-bold ph-bookmarks"></i> Series: {{ page.series }}</strong>

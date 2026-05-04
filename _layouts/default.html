@@ -8,19 +8,13 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Outfit:wght@400;700;900&family=Fira+Code&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Outfit:wght@400;700;900&family=Inter:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;700&family=Quicksand:wght@400;700&family=Open+Sans:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
     
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-    
-    <!-- Theme Initialization -->
-    <script>
-      const savedTheme = localStorage.getItem('theme') || 'dark';
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    </script>
-    
+
     {% if site.google_analytics and site.google_analytics != "" %}
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
@@ -34,9 +28,6 @@
 </head>
 <body>
     <header class="site-header">
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-            <i class="ph-bold ph-sun" id="theme-icon"></i>
-        </button>
         <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
         <p>{{ site.description }}</p>
     </header>
@@ -56,32 +47,5 @@
         <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
     </footer>
 
-    <!-- Theme Toggle Logic -->
-    <script>
-        const toggleBtn = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        
-        function updateIcon(theme) {
-            if (theme === 'light') {
-                themeIcon.classList.remove('ph-sun');
-                themeIcon.classList.add('ph-moon');
-            } else {
-                themeIcon.classList.remove('ph-moon');
-                themeIcon.classList.add('ph-sun');
-            }
-        }
-        
-        // Initial icon state
-        updateIcon(document.documentElement.getAttribute('data-theme'));
-        
-        toggleBtn.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateIcon(newTheme);
-        });
-    </script>
 </body>
 </html>
